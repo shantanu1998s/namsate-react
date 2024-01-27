@@ -15,7 +15,6 @@ const useBody=()=>{
              console.log(json);
              setInfo(json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants);
         }
-
     return info;
 }
 

@@ -1,7 +1,5 @@
 import { useState, useEffect} from 'react'
-import { ApiLink } from '../utils/constant';
 import ResCard from '../resCard/ResCard';
-import './Body.css'
 import Shimmer from '../shimmer/Shimmer';
 import { Link } from 'react-router-dom';
 import useBody from '../utils/useBody';
@@ -11,6 +9,7 @@ const Body=()=>{
     const [searchText,setSearchText]=useState('');
 
     const restListOfData= useBody();
+    console.log(restListOfData);
     const filterRestData=restListOfData;
     
     function topRrestList() {
@@ -23,14 +22,14 @@ const Body=()=>{
       if(online===false) return<h1>Lools like you are offline please check your internet connection</h1>
    return restListOfData===null?<Shimmer/>:
     (
-        <div className='body-main'>
-           <div className='filter'>
+        <div className=''>
+           <div className=' flex my-4 px-4'>
              <div className='search-bar'>
-               <input className='search-input'
+               <input className='border-[2px] border-gray-400 rounded-sm'
                 value={searchText}
                 onChange={(e)=>setSearchText(e.target.value)}
                 />
-               <button className='search-btn' 
+               <button className='ml-4 bg-gray-500 px-4 py-1 color text-white rounded-md' 
                  onClick={()=>{
                   const filterList=restListOfData.filter((data)=>
                       data.info.name.toLowerCase().includes(searchText.toLowerCase())   
@@ -42,17 +41,19 @@ const Body=()=>{
                </button>
              </div>
 
-             <div className='top-rated-rest'>
-             <button onClick={topRrestList}>TopRestaurants</button>
+             <div className='ml-4'>
+             <button className='ml-4 bg-gray-500 px-4 py-1 color text-white rounded-md' onClick={topRrestList}>TopRestaurants</button>
              </div>
            </div>
-           <div className='res-container'>
+
+           <div className='flex flex-wrap b-[100%] justify-center'>
            {
             filterRestData.map((data)=> <Link key={data.info.id} to={"/restaurants/"+data.info.id}><ResCard data={data}/></Link>)
            // filterRestData.map((data)=> <li key={data.info.id}><ResCard data={data}/></li>)
 
            }
            </div>
+           
         </div>
     )
 }

@@ -1,5 +1,4 @@
 import { imgID } from '../utils/constant';
-import './ResCard.css'
 const ResCard=(props)=>{
 
     const {data}=props;
@@ -13,11 +12,11 @@ const ResCard=(props)=>{
 
 
     return(
-       <div className="card">
-                    <img src={imgID+cloudinaryImageId} alt="not found" className='res-card-img'></img>
+       <div className='border w-[180px] m-4 p-4 h-[250px] bg-gray-50 hover:bg-gray-200 rounded-md'>
+                    <img className="w-[100%] rounded-sm" src={imgID+cloudinaryImageId} alt="not found"></img>
                      <div className='card-component'>
                      <h3>{name}</h3>
-                     <p>{cuisines.join(",")}</p>
+                     <p className='overflow-hidden'>{cuisines.join(",")}</p>
                      <h4>{costForTwo}</h4>
                      <h4>{avgRatingString}</h4>
                      </div>
