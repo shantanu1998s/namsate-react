@@ -1,0 +1,12 @@
+.card{
+    width: 200px;
+    height: 300px;
+    margin: 20px;
+    background-color: #f0f0f0;
+}
+
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    
+}

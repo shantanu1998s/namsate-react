@@ -1,0 +1,36 @@
+{
+  "name": "namstereact",
+  "version": "1.0.0",
+  "description": "Namsate React By Akashy saini",
+  "scripts": {
+    "start": "npx parcel index.html",
+    "build": "npx parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shantanu1998s/namsate-react.git"
+  },
+  "keywords": [
+    "Namaste",
+    "react"
+  ],
+  "author": "Akshy saini",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shantanu1998s/namsate-react/issues"
+  },
+  "homepage": "https://github.com/shantanu1998s/namsate-react#readme",
+  "devDependencies": {
+    "parcel": "^2.10.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.1"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
