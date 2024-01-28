@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { ApiLink, menuApi } from "./constant";
+import {  menuApi } from "./constant";
 
 const useResMenu=(id)=>{
     const [resinfo, setResInfo]=useState(null);
-    const [items,setItems]=useState(null);
     console.log(id);
     useEffect(()=>{
        fetchData();
@@ -12,7 +11,6 @@ const useResMenu=(id)=>{
     async function fetchData(){
         const data= await fetch(menuApi+id);
         const jsonData= await data.json();
-        console.log(jsonData);
         setResInfo(jsonData);
         //setItems(json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card);
     }

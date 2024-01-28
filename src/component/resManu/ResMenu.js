@@ -5,18 +5,18 @@ const ResMenu=()=>{
    const {id}= useParams();
   
   const menuData=useResMenu(id);
-  const items=menuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+  console.log(menuData);
+  const items = menuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card 
+  ? menuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card 
+  : menuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.categories[0];
+
   
-  console.log("hello i m outside fetch");
   if(menuData===null) return <Shimmer/>
   
-  console.log(items)
-  console.log(menuData)
   const {
     name,
     cuisines
   }=menuData.data.cards[0].card.card.info
-   
   return(
     <>
     <h1>{name}</h1>
@@ -24,7 +24,7 @@ const ResMenu=()=>{
       <h1>Menu</h1>
       <ul>
       {
-        items.itemCards.map((item)=>
+        items?.itemCards.map((item)=>
         <li key={item.card.info.id}>
         {item.card.info.name} - {item.card.info.price/100}
         

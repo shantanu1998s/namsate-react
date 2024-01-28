@@ -2,25 +2,38 @@ import { useState, useEffect} from 'react'
 import ResCard from '../resCard/ResCard';
 import Shimmer from '../shimmer/Shimmer';
 import { Link } from 'react-router-dom';
-import useBody from '../utils/useBody';
+import { ApiLink } from '../utils/constant';
 import useOnlineStatus from '../utils/useOnlineStatus';
+import promoted from '../promoted/Promoted';
 const Body=()=>{
-
+    const [restListOfData,setRestListOfData]=useState(null);
+    const [filterRestData,setFilterRestData]=useState(null);
     const [searchText,setSearchText]=useState('');
+    const online=useOnlineStatus();
 
-    const restListOfData= useBody();
-    console.log(restListOfData);
-    const filterRestData=restListOfData;
+    const PromotedWith=promoted(ResCard);
+
+    useEffect(()=>{
+      fetchApi();
+     },[])
+  
+      async function fetchApi(){
+           const data= await fetch(ApiLink)
+           const json= await data.json();
+           setRestListOfData(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+           setFilterRestData(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+      }
+   console.log(restListOfData);
     
     function topRrestList() {
       const filteredList = restListOfData.filter(
-        (res) => res.info.avgRating > 4.2
+        (res) => res.info.avgRating > 4.4
       );
       setFilterRestData(filteredList);  
       }
-      const online=useOnlineStatus();
+      
       if(online===false) return<h1>Lools like you are offline please check your internet connection</h1>
-   return restListOfData===null?<Shimmer/>:
+      return restListOfData===null?<Shimmer/>:
     (
         <div className=''>
            <div className=' flex my-4 px-4'>
@@ -47,12 +60,15 @@ const Body=()=>{
            </div>
 
            <div className='flex flex-wrap b-[100%] justify-center'>
-           {
-            filterRestData.map((data)=> <Link key={data.info.id} to={"/restaurants/"+data.info.id}><ResCard data={data}/></Link>)
-           // filterRestData.map((data)=> <li key={data.info.id}><ResCard data={data}/></li>)
-
-           }
-           </div>
+           {filterRestData.map((data) => (
+             <Link key={data.info.id} to={"/restaurants/" + data.info.id}>
+               {data.info.avgRating > 4.4 ? <PromotedWith data={data} />
+                : <ResCard data={data} />
+               }
+             </Link>
+           ))}
+         </div>
+         
            
         </div>
     )
