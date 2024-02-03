@@ -7,13 +7,16 @@ import Contact from './component/header/Contact';
 import ErrorPage from './component/header/ErrorPage';
 import ResMenu from './component/resManu/ResMenu';
 import { lazy, Suspense } from 'react';
-  
-
+import Cart from './component/cart/Cart';
+import { Provider } from 'react-redux';
+import store from './component/store/store'
  const App=()=>{
   return(
      <>
+     <Provider store={store}>
         <Header/>
         <Outlet/>
+        </Provider>
      </>
   )
     
@@ -21,8 +24,8 @@ import { lazy, Suspense } from 'react';
        
   const Grocery=lazy(()=>import("./component/header/Grocery"));
 
- const Approuter=createBrowserRouter([
-     {
+  const Approuter=createBrowserRouter([{
+     
       path:"/",
       element:<App/>,
       children:[
@@ -39,6 +42,10 @@ import { lazy, Suspense } from 'react';
           element:<Contact/>,
          },
          {
+            path:"/cart",
+            element:<Cart/>,
+           },
+         {
             path:"/grocery",
             element:(<Suspense fallback={<h1>Loading...</h1>}>
                <Grocery/>
@@ -52,10 +59,7 @@ import { lazy, Suspense } from 'react';
 
       ],
       errorElement:<ErrorPage/>
-     },
-     
- ])
-
-
+     }, 
+   ])
  const root= ReactDOM.createRoot(document.getElementById("root"))
  root.render(<RouterProvider router={Approuter}/>);

@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import useOnlineStatus from '../utils/useOnlineStatus';
+import { useSelector } from 'react-redux';
 
 const Header=()=>{
-
+    const item=useSelector((store)=>store.cart.items)
+    console.log(item)
    const [btnName, setBtnName]=useState("Login");
        const OnlineStatu=useOnlineStatus();
     return(
@@ -25,6 +27,9 @@ const Header=()=>{
            <li className='m-4'>
               <NavLink to={"/grocery"} >Grocery</NavLink> 
            </li>
+           <li className='m-4'>
+           <NavLink to={"/cart"}>🚮 Cart({item.length})</NavLink>
+        </li>
            <button className='mr-4' onClick={()=>btnName==="Login"?setBtnName("Logout"):setBtnName("Login")}>{btnName}</button>
          </ul>
      
