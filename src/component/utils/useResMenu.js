@@ -14,6 +14,7 @@ const useResMenu=(id)=>{
         setResInfo(jsonData);
         //setItems(json?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card);
     }
+    console.log(resinfo);
     return resinfo;
 }
 

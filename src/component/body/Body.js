@@ -55,7 +55,11 @@ const Body=()=>{
              </div>
 
              <div className='ml-4'>
-             <button className='ml-4 bg-gray-500 px-4 py-1 color text-white rounded-md' onClick={topRrestList}>TopRestaurants</button>
+               <button className='ml-4 bg-gray-500 px-4 py-1 color text-white rounded-md' 
+                 onClick={topRrestList}
+                 >TopRestaurants
+                 
+              </button>
              </div>
            </div>
 

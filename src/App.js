@@ -10,13 +10,18 @@ import { lazy, Suspense } from 'react';
 import Cart from './component/cart/Cart';
 import { Provider } from 'react-redux';
 import store from './component/store/store'
+import Login from './component/login/singup/Login';
+import SingUp from './component/login/singup/SingUp';
+import { UserProvider } from './component/context/UserContext';
  const App=()=>{
   return(
      <>
-     <Provider store={store}>
-        <Header/>
-        <Outlet/>
+     <UserProvider>
+        <Provider store={store}>
+           <Header/>
+           <Outlet/>
         </Provider>
+      </UserProvider>
      </>
   )
     
@@ -41,6 +46,14 @@ import store from './component/store/store'
           path:"/contact",
           element:<Contact/>,
          },
+         {
+         path:"/login",
+         element:<Login/>,
+        },
+        {
+         path:"/singup",
+         element:<SingUp/>,
+        },
          {
             path:"/cart",
             element:<Cart/>,
