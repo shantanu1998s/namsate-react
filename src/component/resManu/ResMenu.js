@@ -11,10 +11,10 @@ const ResMenu=()=>{
 
   const menuData=useResMenu(id);
   console.log(menuData);
-  const items = menuData?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item =>
+  const items = menuData?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(item =>
      item?.card?.card?.['@type']==="type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
   );
-  const offerItems=menuData?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle?.offers
+  const offerItems=menuData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.offers
 
  console.log(offerItems);
   if(menuData===null) return <Shimmer/>
@@ -27,7 +27,7 @@ const ResMenu=()=>{
     costForTwoMessage,
     sla
 
-  }=menuData.data.cards[2].card.card.info
+  }=menuData.data.cards[0].card.card.info
   return(
     <div className="text-center  w-9/12 m-auto  bg-gray-100 mt-3 ">
     <div className="flex justify-between">
